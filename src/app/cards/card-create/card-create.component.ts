@@ -6,7 +6,7 @@ templateUrl: './card-create.component.html'
 })
 
 export class CardCreateComponent {
-  enteredRulestext = ""
+  enteredRulestext = ''
   newRulestext = "NoContent"
   onCardSave(){
   this.newRulestext = this.enteredRulestext;
