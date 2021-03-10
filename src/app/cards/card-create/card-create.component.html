@@ -1,5 +1,10 @@
-<h2>Create Card</h2>
-<textarea rows="6" [(ngModel)]="enteredRulestext"></textarea>
-<hr>
-<button (click)="onCardSave()"> Save Card</button>
+<mat-card>
+  <mat-form-field>
+    <textarea matInput rows="6" [(ngModel)]="enteredRulestext"></textarea>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onCardSave()"> Save Card</button>
+</mat-card>
 <p>{{newRulestext}}</p>
