@@ -1,0 +1,9 @@
+<mat-accordion multi=true *ngIf="cards.length>0">
+ <mat-expansion-panel *ngFor="let card of cards">
+  <mat-expansion-panel-header>
+    {{card.cardName}}
+  </mat-expansion-panel-header>
+  <p>{{card.rulesText}}</p>
+ </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="cards.length<=0">Empty</p>

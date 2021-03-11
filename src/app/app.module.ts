@@ -7,19 +7,21 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card'
 import {MatButtonModule} from '@angular/material/button'
 import {MatToolbarModule} from '@angular/material/toolbar'
+import {MatExpansionModule} from '@angular/material/expansion'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {CardCreateComponent} from './cards/card-create/card-create.component';
 import { HeaderComponent } from './header/header.component';
+import { CardListComponent } from './cards/card-list/card-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardCreateComponent,
-    HeaderComponent
-
+    HeaderComponent,
+    CardListComponent
   ],
   imports: [
     FormsModule,
@@ -30,7 +32,8 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     MatCardModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
