@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Output } from '@angular/core'
 
 @Component({
-selector: 'app-card-create',
-templateUrl: './card-create.component.html',
-styleUrls: ['./card-create.component.scss']
+selector: 'app-post-create',
+templateUrl: './post-create.component.html',
+styleUrls: ['./post-create.component.scss']
 })
 
 export class PostCreateComponent {

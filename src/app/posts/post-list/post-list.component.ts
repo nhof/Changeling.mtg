@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core'
 
 @Component({
-  selector: 'app-card-list',
-  templateUrl: './card-list.component.html',
-  styleUrls:  ['./card-list.component.scss']
+  selector: 'app-post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls:  ['./post-list.component.scss']
 })
 
 export class PostListComponent{

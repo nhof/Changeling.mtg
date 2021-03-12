@@ -1,5 +1,5 @@
 <app-header></app-header>
 <main>
-  <app-card-create (postCreated)="onPostCreated($event)"></app-card-create>
-  <app-card-list [posts]="storedPosts"></app-card-list>
+  <app-post-create (postCreated)="onPostCreated($event)"></app-post-create>
+  <app-post-list [posts]="storedPosts"></app-post-list>
 </main>
