@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  storedCards = [];
+  storedPosts = [];
 
-  onCardCreated(card) {
-    this.storedCards.push(card);
+  onPostCreated(post) {
+    this.storedPosts.push(post);
   }
 }

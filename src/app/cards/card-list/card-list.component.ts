@@ -6,8 +6,8 @@ import {Component, Input} from '@angular/core'
   styleUrls:  ['./card-list.component.scss']
 })
 
-export class CardListComponent{
-  @Input() cards=[];
+export class PostListComponent{
+  @Input() posts=[];
   //Just Smaple code
   //cards = [{cardName:'1', rulesText:'2'}];
   // cards=[

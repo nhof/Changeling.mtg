@@ -6,18 +6,18 @@ templateUrl: './card-create.component.html',
 styleUrls: ['./card-create.component.scss']
 })
 
-export class CardCreateComponent {
-  enteredName=""
-  enteredRules = ''
-  @Output() cardCreated = new EventEmitter();
+export class PostCreateComponent {
+  enteredTitle= '';
+  enteredText = '';
+  @Output() postCreated = new EventEmitter();
 
-  onCardSave(){
-    const card = {
-      cName: this.enteredName,
-      cRules: this.enteredRules
+  onPostSave(){
+    const post = {
+      title: this.enteredTitle,
+      text: this.enteredText
     };
-    this.cardCreated.emit(card);
-    this.enteredName='';
-    this.enteredRules = '';
+    this.postCreated.emit(post);
+    this.enteredTitle='';
+    this.enteredText = '';
   }
 }

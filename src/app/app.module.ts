@@ -12,16 +12,16 @@ import {MatExpansionModule} from '@angular/material/expansion'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {CardCreateComponent} from './cards/card-create/card-create.component';
+import { PostCreateComponent} from './cards/card-create/card-create.component';
 import { HeaderComponent } from './header/header.component';
-import { CardListComponent } from './cards/card-list/card-list.component';
+import { PostListComponent } from './cards/card-list/card-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardCreateComponent,
+    PostCreateComponent,
     HeaderComponent,
-    CardListComponent
+    PostListComponent
   ],
   imports: [
     FormsModule,

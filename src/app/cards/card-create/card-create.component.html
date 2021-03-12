@@ -1,12 +1,12 @@
 <mat-card>
   <mat-form-field>
-    <input matInput [(ngModel)]="enteredName">
+    <input matInput [(ngModel)]="enteredTitle">
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput rows="6" [(ngModel)]="enteredRules"></textarea>
+    <textarea matInput rows="6" [(ngModel)]="enteredText"></textarea>
   </mat-form-field>
   <button
     mat-raised-button
     color="primary"
-    (click)="onCardSave()"> Save Card</button>
+    (click)="onPostSave()"> Save Post</button>
 </mat-card>
