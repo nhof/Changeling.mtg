@@ -1,5 +1,5 @@
 <app-header></app-header>
 <main>
-  <app-card-create></app-card-create>
-  <app-card-list></app-card-list>
+  <app-card-create (cardCreated)="onCardCreated($event)"></app-card-create>
+  <app-card-list [cards]="storedCards"></app-card-list>
 </main>

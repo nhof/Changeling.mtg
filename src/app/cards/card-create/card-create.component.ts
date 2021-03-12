@@ -1,4 +1,4 @@
-import {Component } from '@angular/core'
+import {Component, EventEmitter, Output } from '@angular/core'
 
 @Component({
 selector: 'app-card-create',
@@ -7,9 +7,17 @@ styleUrls: ['./card-create.component.scss']
 })
 
 export class CardCreateComponent {
-  enteredRulestext = ''
-  newRulestext = "NoContent"
+  enteredName=""
+  enteredRules = ''
+  @Output() cardCreated = new EventEmitter();
+
   onCardSave(){
-  this.newRulestext = this.enteredRulestext;
+    const card = {
+      cName: this.enteredName,
+      cRules: this.enteredRules
+    };
+    this.cardCreated.emit(card);
+    this.enteredName='';
+    this.enteredRules = '';
   }
 }

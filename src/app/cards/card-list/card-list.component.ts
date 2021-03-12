@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {Component, Input} from '@angular/core'
 
 @Component({
   selector: 'app-card-list',
@@ -7,8 +7,9 @@ import {Component} from '@angular/core'
 })
 
 export class CardListComponent{
+  @Input() cards=[];
   //Just Smaple code
-  cards = [{cardName:'1', rulesText:'2'}];
+  //cards = [{cardName:'1', rulesText:'2'}];
   // cards=[
   //   {cardName: 'Name1', rulesText:'This card goes whooo'},
   //   {cardName: 'Name2', rulesText:'This card goes yay'},
