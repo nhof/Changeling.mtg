@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core'
 })
 
 export class PostListComponent{
-  @Input() posts=[];
+  @Input() posts =[];
   //Just Smaple code
   //cards = [{cardName:'1', rulesText:'2'}];
   // cards=[
