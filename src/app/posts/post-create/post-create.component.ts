@@ -17,5 +17,6 @@ constructor(public postsService: PostsService){}
       return;
     }
     this.postsService.addPost(form.value.title, form.value.text);
+    form.resetForm();
   }
 }

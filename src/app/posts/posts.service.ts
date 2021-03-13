@@ -21,7 +21,7 @@ export class PostsService{
       text: text,
       date: new Date
     }
-    this.posts.push(post);
+    this.posts = [post].concat(this.posts);
     this.postsUpdated.next([...this.posts]);
   }
 }

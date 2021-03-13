@@ -3,20 +3,24 @@
     <mat-form-field>
       <input
         matInput
-        name="title"
         ngModel
         required
-        #title="ngModel">
+        name="title"
+        #title="ngModel"
+        placeholder="Title"
+        >
         <mat-error *ngIf="title.invalid">no title entered</mat-error>
     </mat-form-field>
     <mat-form-field>
       <textarea
         matInput
-        rows="6"
-        name="text"
         ngModel
         required
-        #text="ngModel">
+        rows="6"
+        name="text"
+        #text="ngModel"
+        placeholder="Text"
+        >
       </textarea>
       <mat-error *ngIf="text.invalid">
         no text entered
