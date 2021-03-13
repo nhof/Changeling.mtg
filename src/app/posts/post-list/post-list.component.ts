@@ -1,4 +1,7 @@
-import {Component, Input} from '@angular/core'
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { PostsService } from '../posts.service';
+import {Post} from '../post.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-post-list',
@@ -6,13 +9,18 @@ import {Component, Input} from '@angular/core'
   styleUrls:  ['./post-list.component.scss']
 })
 
-export class PostListComponent{
-  @Input() posts =[];
-  //Just Smaple code
-  //cards = [{cardName:'1', rulesText:'2'}];
-  // cards=[
-  //   {cardName: 'Name1', rulesText:'This card goes whooo'},
-  //   {cardName: 'Name2', rulesText:'This card goes yay'},
-  //   {cardName: 'Name3', rulesText:'This card goes No'},
-  // ];
+
+export class PostListComponent implements OnInit, OnDestroy{
+  posts: Post[] =[];
+  private postsSub: Subscription;
+
+  constructor(public postsService: PostsService){}
+  ngOnInit(){
+    this.posts = this.postsService.getPosts();
+    this.postsSub = this.postsService.getPostsUpdeteListener().subscribe((posts: Post[])=>{this.posts = posts});
+  }
+
+  ngOnDestroy(){
+    this.postsSub.unsubscribe();
+  }
 }
