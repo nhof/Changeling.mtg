@@ -1,9 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const mongoose = require('mongoose');
+
 const Post = require('./models/post');
 
 const app = express();
+
+mongoose.connect(
+  "mongodb+srv://USER:4BdHMTNkB8z5aYc@cluster0.jfapj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(()=>{console.log('connected to MongoDB')})
+  .catch(()=> console.log('connection failed :\'\('))
+;
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
