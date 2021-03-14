@@ -8,7 +8,7 @@ const Post = require('./models/post');
 const app = express();
 
 mongoose.connect(
-  "mongodb+srv://USER:4BdHMTNkB8z5aYc@cluster0.jfapj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "mongodb+srv://USER:4BdHMTNkB8z5aYc@cluster0.jfapj.mongodb.net/Changeling?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=>{console.log('connected to MongoDB')})
   .catch(()=> console.log('connection failed :\'\('))
@@ -36,7 +36,7 @@ app.post("/api/posts",(req, res, next)=>{
     title: req.body.title,
     text: req.body.text
   });
-  console.log(post)
+  post.save();
   res.status(201).json({
     message: 'TaDah!'
   });
