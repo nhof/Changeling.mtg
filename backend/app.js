@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const Post = require('./models/post');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -18,7 +20,11 @@ app.use((req,res,next)=>{
 });
 
 app.post("/api/posts",(req, res, next)=>{
-  const post = req.body;
+  //const post = req.body
+  const post = new Post({
+    title: req.body.title,
+    text: req.body.text
+  });
   console.log(post)
   res.status(201).json({
     message: 'TaDah!'
@@ -30,14 +36,12 @@ app.get('/api/posts',(req, res, next)=>{
     {
       id:'asdasd',
       title: 'First serverside',
-      text: 'coming from server',
-      date: new Date()
+      text: 'coming from server'
     },
     {
       id:'asdasd',
       title: '2nd serverside',
-      text: 'coming from server!',
-      date: new Date()
+      text: 'coming from server!'
     }
   ]
   res.status(200).json({

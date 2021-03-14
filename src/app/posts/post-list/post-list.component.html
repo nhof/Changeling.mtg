@@ -1,7 +1,7 @@
 <mat-accordion multi=true *ngIf="posts.length>0">
  <mat-expansion-panel *ngFor="let post of posts">
   <mat-expansion-panel-header>
-    {{post.title}} um {{post.date.toLocaleString()}}
+    {{post.title}}
   </mat-expansion-panel-header>
   <p>{{post.text}}</p>
   <mat-action-row>
