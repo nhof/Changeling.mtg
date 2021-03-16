@@ -31,14 +31,15 @@ app.use((req,res,next)=>{
 });
 
 app.post("/api/posts",(req, res, next)=>{
-  //const post = req.body
   const post = new Post({
     title: req.body.title,
     text: req.body.text
   });
-  post.save();
-  res.status(201).json({
-    message: 'TaDah!'
+  post.save().then(createdPost => {
+    res.status(201).json({
+      message: 'Post added!',
+      postId: createdPost._id
+    });
   });
 });
 
