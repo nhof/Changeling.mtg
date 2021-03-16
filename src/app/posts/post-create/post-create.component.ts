@@ -13,6 +13,7 @@ styleUrls: ['./post-create.component.scss']
 
 export class PostCreateComponent implements OnInit{
 post: Post;
+isLoading = false;
 private mode = 'create';
 private postId: string;
 constructor(public postsService: PostsService, public route:ActivatedRoute){}
@@ -21,8 +22,10 @@ constructor(public postsService: PostsService, public route:ActivatedRoute){}
       if(paramMap.has('postId')){
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
+        this.isLoading = true;
         this.postsService.getPost(this.postId).subscribe(postData =>{
-          this.post = {id: postData._id, title: postData.title, text: postData.text}
+          this.post = {id: postData._id, title: postData.title, text: postData.text};
+          this.isLoading = false;
         });
       } else{
         this.mode = 'create';
@@ -35,6 +38,7 @@ constructor(public postsService: PostsService, public route:ActivatedRoute){}
     if(form.invalid){
       return;
     }
+    this.isLoading = true;
     if(this.mode === 'create'){
       this.postsService.addPost(form.value.title, form.value.text);
     } else{
