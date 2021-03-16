@@ -43,21 +43,22 @@ app.post("/api/posts",(req, res, next)=>{
 });
 
 app.get('/api/posts',(req, res, next)=>{
-  const posts = [
-    {
-      id:'asdasd',
-      title: 'First serverside',
-      text: 'coming from server'
-    },
-    {
-      id:'asdasd',
-      title: '2nd serverside',
-      text: 'coming from server!'
-    }
-  ]
-  res.status(200).json({
-    message: 'sucess',
-    posts: posts
+//Mongoose Docs for more!
+  Post.find()
+  .then(documents =>{
+    res.status(200).json({
+      message: 'fetch',
+      posts: documents
+    });
+  });
+});
+
+app.delete('/api/posts/:id',(req,res, next)=>{
+Post.deleteOne({
+  _id: req.params.id
+}).then(result => {
+  console.log(result);
+  res.status(200).json({message:'Post deleted'})
   });
 });
 
