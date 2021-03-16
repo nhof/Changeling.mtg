@@ -21,7 +21,9 @@ constructor(public postsService: PostsService, public route:ActivatedRoute){}
       if(paramMap.has('postId')){
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
-        this.post = this.postsService.getPost(this.postId);
+        this.postsService.getPost(this.postId).subscribe(postData =>{
+          this.post = {id: postData._id, title: postData.title, text: postData.text}
+        });
       } else{
         this.mode = 'create';
         this.postId = null;

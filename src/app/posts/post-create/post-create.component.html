@@ -3,7 +3,7 @@
     <mat-form-field>
       <input
         matInput
-        [ngModel]="post.title"
+        [ngModel]="post?.title"
         required
         name="title"
         #title="ngModel"
@@ -14,7 +14,7 @@
     <mat-form-field>
       <textarea
         matInput
-        [ngModel]="post.text"
+        [ngModel]="post?.text"
         required
         rows="6"
         name="text"
