@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {OnInit} from '@angular/core'
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PostsService } from '../posts.service';
 import {Post} from '../post.model';
@@ -14,36 +14,51 @@ styleUrls: ['./post-create.component.scss']
 export class PostCreateComponent implements OnInit{
 post: Post;
 isLoading = false;
+form: FormGroup;
+
 private mode = 'create';
 private postId: string;
 constructor(public postsService: PostsService, public route:ActivatedRoute){}
-  ngOnInit(){
-    this.route.paramMap.subscribe((paramMap: ParamMap)=>{
-      if(paramMap.has('postId')){
-        this.mode = 'edit';
-        this.postId = paramMap.get('postId');
-        this.isLoading = true;
-        this.postsService.getPost(this.postId).subscribe(postData =>{
-          this.post = {id: postData._id, title: postData.title, text: postData.text};
-          this.isLoading = false;
-        });
-      } else{
-        this.mode = 'create';
-        this.postId = null;
-      }
-    })
-  };
 
-  onSavePost(form: NgForm){
-    if(form.invalid){
-      return;
-    }
-    this.isLoading = true;
-    if(this.mode === 'create'){
-      this.postsService.addPost(form.value.title, form.value.text);
+ngOnInit(){
+  this.form = new FormGroup({
+   title: new FormControl(null, {
+     validators: [Validators.required, Validators.minLength(3)]
+    }),
+    text: new FormControl(null, {
+      validators: [Validators.required]
+    })
+  });
+  this.route.paramMap.subscribe((paramMap: ParamMap)=>{
+    if(paramMap.has('postId')){
+      this.mode = 'edit';
+      this.postId = paramMap.get('postId');
+      this.isLoading = true;
+      this.postsService.getPost(this.postId).subscribe(postData =>{
+        this.post = {id: postData._id, title: postData.title, text: postData.text};
+        this.isLoading = false;
+        this.form.setValue({
+          title: this.post.title,
+          text: this.post.text
+        })
+      });
     } else{
-      this.postsService.updatePost(this.postId, form.value.title, form.value.text);
+      this.mode = 'create';
+      this.postId = null;
     }
-    form.resetForm();
+  })
+};
+
+onSavePost(){
+  if(this.form.invalid){
+    return;
   }
+  this.isLoading = true;
+  if(this.mode === 'create'){
+    this.postsService.addPost(this.form.value.title, this.form.value.text);
+  } else{
+    this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.text);
+  }
+  this.form.reset();
+}
 }
