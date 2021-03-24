@@ -9,13 +9,11 @@ const postsRoutes = require('./routes/posts')
 const app = express();
 
 mongoose.connect(
-  "mongodb+srv://USER:4BdHMTNkB8z5aYc@cluster0.jfapj.mongodb.net/Changeling?retryWrites=true&w=majority",
+  "mongodb+srv://USER:USER@cluster0.jfapj.mongodb.net/Changeling?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(()=>{console.log('connected to MongoDB')})
-  .catch(()=> console.log('connection failed :\'\('))
+  .then(()=>{console.log('connected to MongoDB :\)')})
+  .catch(err => console.log(err + ' connection failed :\'\('))
 ;
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
