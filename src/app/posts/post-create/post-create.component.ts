@@ -72,7 +72,7 @@ onSavePost(){
   }
   this.isLoading = true;
   if(this.mode === 'create'){
-    this.postsService.addPost(this.form.value.title, this.form.value.text);
+    this.postsService.addPost(this.form.value.title, this.form.value.text, this.form.value.image);
   } else{
     this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.text);
   }

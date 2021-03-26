@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
   }
 });
 
-router.post("",multer(storage).single("image"),(req, res, next)=>{
+router.post("",multer({storage: storage}).single("image"),(req, res, next)=>{
   const post = new Post({
     title: req.body.title,
     text: req.body.text
