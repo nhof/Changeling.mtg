@@ -13,19 +13,19 @@ styleUrls: ['./post-create.component.scss']
 })
 
 export class PostCreateComponent implements OnInit{
-post: Post;
-isLoading = false;
-form: FormGroup;
-imagePreview: string;
+  post: Post;
+  isLoading = false;
+  form: FormGroup;
+  imagePreview: string;
 
-private mode = 'create';
-private postId: string;
-constructor(public postsService: PostsService, public route:ActivatedRoute){}
+  private mode = 'create';
+  private postId: string;
+  constructor(public postsService: PostsService, public route:ActivatedRoute){}
 
-ngOnInit(){
-  this.form = new FormGroup({
-   title: new FormControl(null, {
-     validators: [Validators.required, Validators.minLength(3)]
+  ngOnInit(){
+    this.form = new FormGroup({
+    title: new FormControl(null, {
+      validators: [Validators.required, Validators.minLength(3)]
     }),
     text: new FormControl(null, {
       validators: [Validators.required]
@@ -33,7 +33,6 @@ ngOnInit(){
     image: new FormControl(null, {
       validators:[Validators.required], asyncValidators:[mimeType]
     })
-
   });
   this.route.paramMap.subscribe((paramMap: ParamMap)=>{
     if(paramMap.has('postId')){
@@ -46,14 +45,14 @@ ngOnInit(){
         this.form.setValue({
           title: this.post.title,
           text: this.post.text
-        })
-      });
-    } else{
+          })
+        });
+      } else{
       this.mode = 'create';
       this.postId = null;
-    }
-  })
-};
+      }
+    })
+  };
 
 onImagePick(event: Event){
   const file = (event.target as HTMLInputElement).files[0];
@@ -77,5 +76,5 @@ onSavePost(){
     this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.text);
   }
   this.form.reset();
-}
+  }
 }
