@@ -40,11 +40,12 @@ export class PostCreateComponent implements OnInit{
       this.postId = paramMap.get('postId');
       this.isLoading = true;
       this.postsService.getPost(this.postId).subscribe(postData =>{
-        this.post = {id: postData._id, title: postData.title, text: postData.text};
+        this.post = {id: postData._id, title: postData.title, text: postData.text, imagePath: postData.imagePath};
         this.isLoading = false;
         this.form.setValue({
           title: this.post.title,
-          text: this.post.text
+          text: this.post.text,
+          image: this.post.imagePath
           })
         });
       } else{
@@ -73,7 +74,12 @@ onSavePost(){
   if(this.mode === 'create'){
     this.postsService.addPost(this.form.value.title, this.form.value.text, this.form.value.image);
   } else{
-    this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.text);
+    this.postsService.updatePost(
+      this.postId,
+      this.form.value.title,
+      this.form.value.text,
+      this.form.value.image
+      );
   }
   this.form.reset();
   }
