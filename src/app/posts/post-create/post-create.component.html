@@ -3,6 +3,7 @@
   <form [formGroup]="form" (submit)="onSavePost(postForm)"  *ngIf="!isLoading">
     <mat-form-field>
       <input
+        type="text"
         matInput
         required
         placeholder="Title"
