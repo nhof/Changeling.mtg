@@ -3,6 +3,7 @@ const multer = require('multer');
 const mongoose = require('mongoose')
 
 const Post = require('../models/post');
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
@@ -29,23 +30,28 @@ const storage = multer.diskStorage({
   }
 });
 
-router.post("",multer({storage: storage}).single("image"),(req, res, next)=>{
-  const url = req.protocol + '://' + req.get("host");
-  const post = new Post({
-    title: req.body.title,
-    text: req.body.text,
-    imagePath: url + "/images/" + req.file.filename
-  });
-  post.save().then(createdPost => {
-    res.status(201).json({
-      message: 'Post added!',
-      post: {
-        ...createdPost,
-        imagePath: createdPost.imagePath
-      }
+router.post(
+  "",
+  checkAuth,
+  multer({storage: storage}).single("image"),
+  (req, res, next)=>{
+    const url = req.protocol + '://' + req.get("host");
+    const post = new Post({
+      title: req.body.title,
+      text: req.body.text,
+      imagePath: url + "/images/" + req.file.filename
     });
-  });
-});
+    post.save().then(createdPost => {
+      res.status(201).json({
+        message: 'Post added!',
+        post: {
+          ...createdPost,
+          imagePath: createdPost.imagePath
+        }
+      });
+     });
+  }
+);
 
 router.get('',(req, res, next)=>{
   const pageSize = +req.query.pagesize;
@@ -60,7 +66,7 @@ router.get('',(req, res, next)=>{
   postQuery
   .then(documents =>{
     fetchedPosts = documents;
-    return Post.count();
+    return Post.countDocuments();
   }).then(count=>
     res.status(200).json({
       message: 'fetch',
@@ -81,16 +87,22 @@ router.get('/:id',(req,res,next)=>{
 })
 
 
-router.delete('/:id',(req,res, next)=>{
-Post.deleteOne({
-  _id: req.params.id
-}).then(result => {
-  console.log(result + ' deleted');
-  res.status(200).json({message:'Post deleted'})
+router.delete(
+  '/:id',
+  checkAuth,
+  (req,res, next)=>{
+    Post.deleteOne({
+      _id: req.params.id
+    }).then(result => {
+      console.log(result + ' deleted');
+      res.status(200).json({message:'Post deleted'
+    })
   });
 });
 
-router.put('/:id',
+router.put(
+  '/:id',
+  checkAuth,
   multer({storage: storage}).single("image"),
   (req, res, next)=>
   {
