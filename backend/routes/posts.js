@@ -122,10 +122,13 @@ router.put(
     imagePath: imagePath,
     creator: req.userData.userId
   })
+  console.log(req.params.id)
   Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post).then(result =>{
     if(result.n>0){
+      console.log("asdad")
       res.status(200).json({message: "Update successful!"});
     } else {
+      console.log("Problems")
       res.status(401).json({message: "Not authorized!"});
     }
   })
