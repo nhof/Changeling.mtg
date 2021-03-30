@@ -119,7 +119,8 @@ router.put(
     _id: req.body.id,
     title: req.body.title,
     text: req.body.text,
-    imagePath: imagePath
+    imagePath: imagePath,
+    creator: req.userData.userId
   })
   Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post).then(result =>{
     if(result.n>0){

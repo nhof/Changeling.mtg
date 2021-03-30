@@ -37,7 +37,7 @@ export class PostsService
   }
 
   getPost(id: string){
-    return this.http.get<{_id: string, title: string, text: string, imagePath: string}>('http://localhost:3000/api/posts/'+id)
+    return this.http.get<{_id: string, title: string, text: string, imagePath: string, creator: string}>('http://localhost:3000/api/posts/'+id)
   }
 
   getPostsUpdeteListener(){
@@ -70,7 +70,8 @@ export class PostsService
         id: id,
         title: title,
         text: text,
-        imagePath: image
+        imagePath: image,
+        creator: null
       }
     }
     this.http.put('http://localhost:3000/api/posts/'+id, postData)
