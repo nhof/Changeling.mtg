@@ -5,8 +5,23 @@ import { Component } from "@angular/core";
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
+
 export class SidenavComponent {
 
+
+  Sidenav1 = {
+    Name: "Home",
+    Link: "/"
+  };
+  Sidenav2 = {
+    Name: "Cards",
+    Link: "/cards"
+  };
+  Sidenav3 = {
+    Name: "Discussion",
+    Link: "/auth/login"
+  };
+  SidenavLinks = [this.Sidenav1,this.Sidenav2,this.Sidenav3];
   constructor(){}
 
 }
