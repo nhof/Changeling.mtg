@@ -19,7 +19,7 @@ export class SidenavComponent {
   };
   Sidenav3 = {
     Name: "Discussion",
-    Link: "/postlist"
+    Link: "/postlist",
   };
   SidenavLinks = [this.Sidenav1,this.Sidenav2,this.Sidenav3];
   constructor(){}
