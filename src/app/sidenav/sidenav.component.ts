@@ -14,7 +14,7 @@ export class SidenavComponent {
     Link: "/"
   };
   Sidenav2 = {
-    Name: "Cards",
+    Name: "Create Cards",
     Link: "/cards"
   };
   Sidenav3 = {

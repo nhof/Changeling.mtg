@@ -1,5 +1,5 @@
 main{
-  width: 90%;
+  width: 100%;
   margin: 1%;
 }
 
@@ -8,5 +8,13 @@ main{
 }
 
 .flex-wide{
-  width: 90%
+  margin-top: 10px;
+  width: 80%;
+}
+
+.flex-short{
+  width: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
