@@ -4,18 +4,16 @@ const path = require("path");
 
 const mongoose = require('mongoose');
 
-const postsRoutes = require('./routes/posts')
-const userRoutes = require('./routes/user')
+const postsRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
 
 
 const app = express();
-
 mongoose.connect(
-  "mongodb+srv://USER:USER@cluster0.jfapj.mongodb.net/Changeling?retryWrites=true&w=majority",
+  "mongodb+srv://USER:"+process.env.MONGO_ATLAS_PW+"@cluster0.jfapj.mongodb.net/Changeling?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=>{console.log('connected to MongoDB :\)')})
-  .catch(err => console.log(err + ' connection failed :\'\('))
-;
+  .catch(err => console.log(err + ' connection failed :\'\('));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

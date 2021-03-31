@@ -7,7 +7,7 @@ import{AuthData} from "./auth-data.model";
 
 import { environment } from "../../environments/environment";
 
-const BACKEND_URL = environment.apiUrl+"/user/";
+const BACKEND_URL = environment.apiUrl+"user/";
 
 @Injectable({
   providedIn: "root"
