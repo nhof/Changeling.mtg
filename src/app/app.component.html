@@ -1,4 +1,10 @@
 <app-header></app-header>
-<main>
-  <router-outlet></router-outlet>
+
+<main class="flex-container">
+  <div>
+    <app-sidenav></app-sidenav>
+  </div>
+  <div class="flex-wide">
+    <router-outlet></router-outlet>
+  </div>
 </main>

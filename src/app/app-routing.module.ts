@@ -3,13 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 
 const routes: Routes = [
   {path: '', component: PostListComponent},
   {path: 'create', component: PostCreateComponent, canActivate: [AuthGuard]},
   {path: 'edit/:postId', component: PostCreateComponent, canActivate: [AuthGuard]},
-  {path: 'auth',loadChildren:() => import('./auth/auth.module').then(m=>m.AuthModule)}
+  {path: 'auth',loadChildren:() => import('./auth/auth.module').then(m=>m.AuthModule)},
+  {path: 'sidenav', component: SidenavComponent}
 ];
 
 @NgModule({
@@ -17,4 +19,5 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard]
 })
+
 export class AppRoutingModule { }

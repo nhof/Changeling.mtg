@@ -1,4 +1,12 @@
 main{
-  width: 80%;
-  margin: 1% auto;
+  width: 90%;
+  margin: 1%;
+}
+
+.flex-container{
+  display: flex;
+}
+
+.flex-wide{
+  width: 100%
 }
