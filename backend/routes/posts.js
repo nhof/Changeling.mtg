@@ -50,7 +50,10 @@ router.post(
           imagePath: createdPost.imagePath
         }
       });
-     });
+     }).catch(error =>
+      res.status(500).json({
+        message: "creating a post failed!"
+      }));
   }
 );
 
@@ -68,13 +71,15 @@ router.get('',(req, res, next)=>{
   .then(documents =>{
     fetchedPosts = documents;
     return Post.countDocuments();
-  }).then(count=>
+  }).then(count=>{
     res.status(200).json({
       message: 'fetch',
       posts: fetchedPosts,
       maxPosts: count
     })
-  );
+  }).catch(error =>{
+    res.status(500).json("Fetching posts failed")
+  });
 });
 
 router.get('/:id',(req,res,next)=>{
@@ -84,7 +89,9 @@ router.get('/:id',(req,res,next)=>{
     } else{
       res.status(404).json({message:'Post not found'})
     }
-  })
+  }).catch(error =>{
+    res.status(500).json("Fetching post failed")
+  });
 })
 
 
@@ -101,7 +108,9 @@ router.delete(
       } else {
         res.status(401).json({message: "Not authorized!"});
       }
-  });
+  }).catch(error =>{
+    res.status(500).json("Not authorized!")
+  });;
 });
 
 router.put(
@@ -122,15 +131,15 @@ router.put(
     imagePath: imagePath,
     creator: req.userData.userId
   })
-  console.log(req.params.id)
   Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post).then(result =>{
     if(result.n>0){
-      console.log("asdad")
       res.status(200).json({message: "Update successful!"});
     } else {
       console.log("Problems")
       res.status(401).json({message: "Not authorized!"});
     }
+  }).catch(error=>{
+    res.status(500).json({message:"Couldn't update post"})
   })
 })
 
