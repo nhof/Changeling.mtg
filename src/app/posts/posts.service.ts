@@ -55,7 +55,7 @@ export class PostsService
     this.http
     .post<{message: string, post: Post}>(BACKEND_URL, postData)
     .subscribe((responseData)=>{
-      this.router.navigate(["/"]);
+      this.router.navigate(["/postlist"]);
     })
   }
 
@@ -79,7 +79,7 @@ export class PostsService
     }
     this.http.put(BACKEND_URL+id, postData)
     .subscribe(response=>{
-      this.router.navigate(["/"]);
+      this.router.navigate(["/postlist"]);
     } );
   }
 

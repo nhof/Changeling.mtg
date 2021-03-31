@@ -12,14 +12,16 @@ import { ErrorComponent } from './error/error.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import  { ErrorInterceptor} from './error-interceptor'
 import { PostsModule } from './posts/posts.module';
-import {SidenavComponent} from './sidenav/sidenav.component'
+import {SidenavComponent} from './sidenav/sidenav.component';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ErrorComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
