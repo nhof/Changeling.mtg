@@ -6,8 +6,7 @@ const extractFile = require('../middleware/file');
 
 const router = express.Router();
 
-router.post("", checkAuth, extractFile, PostController.createPost
-);
+router.post("", checkAuth, extractFile, PostController.createPost);
 
 router.get("", PostController.getPosts);
 
