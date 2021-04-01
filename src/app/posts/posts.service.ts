@@ -51,7 +51,7 @@ export class PostsService
     const postData = new FormData();
     postData.append("title", title);
     postData.append("text", text);
-    postData.append("image",image, title)
+    postData.append("image",image, title);
     this.http
     .post<{message: string, post: Post}>(BACKEND_URL, postData)
     .subscribe((responseData)=>{
@@ -67,7 +67,6 @@ export class PostsService
       postData.append("title", title);
       postData.append("text", text);
       postData.append("image", image, title);
-
     }else{
       const postData: Post = {
         id: id,
